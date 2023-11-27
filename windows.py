@@ -1,13 +1,14 @@
 # import library
-import pygame
+import pygame # import pygame library
 
-# pygame setup
-pygame.init()
-screen = pygame.display.set_mode((1280, 720))
-clock = pygame.time.Clock()
-running = True
+pygame.init() # initialize pygame
+pygame.display.set_caption("The Planning Poker") # set window title
+screen = pygame.display.set_mode((1280, 720)) # define screen size
 
-while running:
+clock = pygame.time.Clock() # define clock
+running = True # define running
+
+while running: # main game loop
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
