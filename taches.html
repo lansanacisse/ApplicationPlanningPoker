@@ -2,7 +2,7 @@
 <head>
     <title>Planning Poker</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
 </head>
 <body>
     <div id="container">
@@ -10,18 +10,20 @@
             <h1>Planning Poker</h1>
         </div>
         <div id="content">
-            <h2>Saisi des taches du projets!</h2>
-            <img src="cartes/dashbord.png" alt="">
+            <h2>Saisis les taches du projets!</h2>
+            <img src="./cartes/dashbord.png" alt="">
             <p>
         </div>
-        <form action="">
+        <form  name="saisieTache" id = "saisieTache" action="./taches.php" method="POST">
             <label for="">Saisir une tache</label>
-            <input type="text">
+            <input type="text" name="tache" id="tache" placeholder="Ecrire une tache ici">
             <br>
             <br>
-            <input type="submit" name="Terminer" value="Terminer"> <input type="button" value="Ajouter"> 
+            <input type="submit" name="debut" id="debut" value="Debut de la reunion" onclick="ajoutTache()">
+            <input type="button"  name="ajout" id="ajout" value="Ajouter tache" onclick="ajoutTache()"> 
         </form>
         <div>
             <p>© 2022 - Planning Poker</p>
         </div>
+<script src="./tache.js"></script>
 </html>
