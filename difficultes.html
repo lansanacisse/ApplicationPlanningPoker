@@ -3,6 +3,13 @@
     <title>Planning Poker</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style>
+        .red-background {
+            background-color: red;
+            border-radius: 20px;
+
+        }
+    </style>
 </head>
 <body>
     <div id="container">
@@ -16,16 +23,52 @@
         </div>
         
         <!-- Choix des difficultés -->
-        <form>
+        <form name="difficultes" method="POST" action ="difficultes.php">
             <h3>Selectionner la difficulté</h3>
-            <input type="image" id="image" alt="Login" src="/cartes/cartes_" />
-           
+            <img src="./cartes/cartes_0.svg" alt="0"/>
+            <input type="radio" name="difficulte" id="difficulte" value="0" required>
             
+            <img src="./cartes/cartes_1.svg" alt="1"/>
+            <input type="radio" name="difficulte" id="difficulte" value="1" required>
+
+            <img src="./cartes/cartes_2.svg" alt="2"/>
+            <input type="radio" name="difficulte" id="difficulte" value="2" required>
+
+            <img src="./cartes/cartes_3.svg" alt="3"/>
+            <input type="radio" name="difficulte" id="difficulte" value="3" required>
+
+            <img src="./cartes/cartes_5.svg" alt="5"/>
+            <input type="radio" name="difficulte" id="difficulte" value="5" required>
+
+            <img src="./cartes/cartes_8.svg" alt="8"/>
+            <input type="radio" name="difficulte" id="difficulte" value="8" required>
+
+            <img src="./cartes/cartes_13.svg" alt="13"/>
+            <input type="radio" name="difficulte" id="difficulte" value="13" required>
+
+            <img src="./cartes/cartes_20.svg" alt="20"/>
+            <input type="radio" name="difficulte" id="difficulte" value="20" required>
+
+            <img src="./cartes/cartes_40.svg" alt="40"/>
+            <input type="radio" name="difficulte" id="difficulte" value="40" required>
+
+            <img src="./cartes/cartes_100.svg" alt="100"/>
+            <input type="radio" name="difficulte" id="difficulte" value="100" required>
+
+            <img src="./cartes/cartes_cafe.svg" alt="cafe"/>
+            <input type="radio" name="difficulte" id="difficulte" value="cafe" required>
+
+            <img src="./cartes/cartes_interro.svg" alt="?"/>
+            <input type="radio" name="difficulte" id="difficulte" value="?" required>
+
             <br><br>
-            <input type="submit" value="Soumettre">
+            <input type="submit" id="vote" value="Voter">
           </form>
 
         <div>
             <p>© 2022 - Planning Poker</p>
         </div>
+    </div>
+    <script src="difficultes.js"></script>
+    </body>
 </html>
