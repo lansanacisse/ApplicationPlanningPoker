@@ -7,36 +7,45 @@
 <body>
     <div id="container">
         <div id="header">    
-            <h1>Planning Poker</h1>
+            <h1> The Planning Poker</h1>
         </div>
         <div id="content">
             <h2>Welcome to Planning Poker!</h2>
-            <img src="cartes/dashbord.png" alt="">
-            <p>
+            <p>Planning Poker is a consensus-based, gamified technique for estimating, mostly used to estimate effort or relative size of development goals in software development.</p>
+            <p>Planning Poker is a tool that allows you to estimate the effort or relative size of development goals in software development.</p>
+            <p>Planning Poker is a tool that allows you to estimate the effort
         </div>
+        
+        <br><br>
 
-        <form name="initialisation" id = "initialisation" action="./participants.php" method="POST">
+        <form name="initialisation" id = "initialisation" action="difficultes.html" method="post">
             <label for="nombreParticipants">Saisir le nombre des participants </label>
             <input type="number" name="participants" id="participants" required>
             <br> <br>
+
             <label for="nombreTaches">Saisir le nombre des taches </label>
             <input type="number" name="taches" id="taches" required>
+            <br><br>
+            
+            <label for="methode">Choisir une méthode</label>
             <br>
-            <br>
-            <label for="methode">Choisir la méthode</label>
-             <br>
                 <input type="radio" name="methode" id="methode" value="classique" required> Méthode classique
             <br>
                 <input type="radio" name="methode" id="methode" value="moyenne" required> Méthode moyenne
+            <br> bra
             <br>
-            <br>
-                <input type = "button" id="continuer"  value="Continue" onclick="ajoutParticipantsEtTaches()">
+                <input type = "button" id="continuer"  value="Debut de la reunion" onclick="ajoutParticipantsEtTaches()">
+            <br> <br>
+            <br><br>
+            
             <div id="participantsContainer"></div>
             <div id="tachesContainer"></div>
             <div id="submitContainer"></div>
         </form>
-
-        <div id="footer">
-            <p>© 2022 - Planning Poker</p>
-<script src="./accueil.js"></script>
+    </div>
+    <div id="footer">
+        <p>© 2022 - Planning Poker</p>
+    </div>    
+        <script src="./accueil.js"></script>
+</body>
 </html>
