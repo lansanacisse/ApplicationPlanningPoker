@@ -3,49 +3,57 @@
     <title>Planning Poker</title>
     <meta charset="utf-8">
     <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <div id="container">
-        <div id="header">    
+    <div id="container" >
+        <div id="content" class="text-center">
             <h1> The Planning Poker</h1>
-        </div>
-        <div id="content">
+            <br>
             <h2>Welcome to Planning Poker!</h2>
-            <p>Planning Poker is a consensus-based, gamified technique for estimating, mostly used to estimate effort or relative size of development goals in software development.</p>
-            <p>Planning Poker is a tool that allows you to estimate the effort or relative size of development goals in software development.</p>
-            <p>Planning Poker is a tool that allows you to estimate the effort
+            <img src="/cartes/dashbord.png" alt="">
         </div>
-        
-        <br><br>
+        <br> <br>
+        <div class="container py-3">
+            <form name="initialisation" id = "initialisation" action="difficultes.html" method="post">
+                <div class="mb-3">
+                    <label class="form-label" for="nombreParticipants" "><b>Saisir le nombre des participants</b></label>
+                    <input class="form-control" type="number" name="participants" id="participants" required>    
+                </div>
+                
+    
+                <div class="mb-3">
+                    <label class="form-label" for="nombreTaches"> <b>Saisir le nombre des taches</b> </label>
+                    <input class="form-control" type="number" name="taches" id="taches" required>
+                </div>
+                <br> <br>
+                <div>
+                    <label for="methode"><b>Choisir une méthode</b></label>
+                    <br> <br>
+                    <input type="radio" name="methode" id="methode" value="classique" required> Méthode classique
+                    <br> <br>
+                    <input type="radio" name="methode" id="methode" value="moyenne" required> Méthode moyenne
+                </div>
+                
+                <br><br>
 
-        <form name="initialisation" id = "initialisation" action="difficultes.html" method="post">
-            <label for="nombreParticipants">Saisir le nombre des participants </label>
-            <input type="number" name="participants" id="participants" required>
-            <br> <br>
-
-            <label for="nombreTaches">Saisir le nombre des taches </label>
-            <input type="number" name="taches" id="taches" required>
-            <br><br>
-            
-            <label for="methode">Choisir une méthode</label>
-            <br>
-                <input type="radio" name="methode" id="methode" value="classique" required> Méthode classique
-            <br>
-                <input type="radio" name="methode" id="methode" value="moyenne" required> Méthode moyenne
-            <br> bra
-            <br>
-                <input type = "button" id="continuer"  value="Debut de la reunion" onclick="ajoutParticipantsEtTaches()">
-            <br> <br>
-            <br><br>
-            
-            <div id="participantsContainer"></div>
-            <div id="tachesContainer"></div>
-            <div id="submitContainer"></div>
-        </form>
+                <div class="col-md-12">
+                    <input type = "button" id="continuer"  value="Continuer" onclick="ajoutParticipantsEtTaches()">
+                </div>
+                    
+                <br><br>
+               
+               <div>
+                    <div id="participantsContainer"></div> 
+                    <div id="tachesContainer"></div>
+                    <div id="submitContainer"></div>
+               </div>
+            </form>
+        </div>
     </div>
-    <div id="footer">
-        <p>© 2022 - Planning Poker</p>
+    <div id="footer" class="text-center">
+        <p>© 2023 - Planning Poker</p>
     </div>    
-        <script src="./accueil.js"></script>
+    <script src="./accueil.js"></script>
 </body>
 </html>

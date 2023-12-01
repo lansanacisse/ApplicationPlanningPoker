@@ -15,58 +15,92 @@
 </head>
 <body>
     <div class="container -fluid">
-        <div id="header">    
-            <h1>Planning Poker</h1>
+        <div id="content" class="text-center">
+            <h1> The Planning Poker</h1>
+            <br>
+            <h2>Welcome to Planning Poker!</h2>
+            <img src="/cartes/dashbord.png" alt="">
         </div>
+        <br> <br>
+        <b></b>
+        <!-- Nous devons afficher le taches plutot que le nom du joueur -->
         <div id="content">
             <div id="jsonJoueur"></div>
         </div>
         
         <!-- Choix des difficultés -->
-        <form name="difficultes" id ="difficultes" method="POST" action ="difficultes.php">
-            <h3>Selectionner la difficulté</h3>
-            <img src="./cartes/cartes_0.svg" alt="0"/>
-            <input type="radio" name="difficulte" id="difficulte" value="0" required>
+       <div  class="container ">
+            <form class="row g-4" name="difficultes" id ="difficultes" method="POST" action ="difficultes.php">
+                <h3 class="text-center">Selectionner la difficulté</h3>
+                
+                <div class="col-md-3 ">
+                    <img src="./cartes/cartes_0.svg" alt="0"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="0" required>
+                </div>
+
+                <div class="col-md-3">
+                    <img src="./cartes/cartes_1.svg" alt="1"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="1" required>
+                </div>
+
+                <div class="col-md-3">
+                    <img src="./cartes/cartes_2.svg" alt="2"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="2" required>
+                </div>
+
+                <div class="col-md-3">
+                    <img src="./cartes/cartes_3.svg" alt="3"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="3" required>
+                </div>
+
+               <div class="col-md-3">
+                    <img src="./cartes/cartes_5.svg" alt="5"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="5" required>
+               </div>
+
+                <div class="col-md-3">
+                    <img src="./cartes/cartes_8.svg" alt="8"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="8" required>
+                </div>
+
+               <div class="col-md-3">
+                    <img src="./cartes/cartes_13.svg" alt="13"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="13" required>
+               </div>
+
+                <div class="col-md-3">
+                    <img src="./cartes/cartes_20.svg" alt="20"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="20" required>
+                </div>
+
+               <div class="col-md-3">
+                    <img src="./cartes/cartes_40.svg" alt="40"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="40" required>
+               </div>
+
+               <div class="col-md-3">
+                    <img src="./cartes/cartes_100.svg" alt="100"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="100" required>
+               </div>
+
+                <div class="col-md-3">
+                    <img src="./cartes/cartes_cafe.svg" alt="cafe"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="cafe" required>
+                </div>
+
+                <div class="col-md-3">
+                    <img src="./cartes/cartes_interro.svg" alt="?"/>
+                    <input type="radio" name="difficulte" id="difficulte" value="?" required>
+                </div>
+             
             
-            <img src="./cartes/cartes_1.svg" alt="1"/>
-            <input type="radio" name="difficulte" id="difficulte" value="1" required>
+                <input type = "submit" id="continuer"  value="Voter" class="text-center">
+             
+            </form>
+       </div>
 
-            <img src="./cartes/cartes_2.svg" alt="2"/>
-            <input type="radio" name="difficulte" id="difficulte" value="2" required>
-
-            <img src="./cartes/cartes_3.svg" alt="3"/>
-            <input type="radio" name="difficulte" id="difficulte" value="3" required>
-
-            <img src="./cartes/cartes_5.svg" alt="5"/>
-            <input type="radio" name="difficulte" id="difficulte" value="5" required>
-
-            <img src="./cartes/cartes_8.svg" alt="8"/>
-            <input type="radio" name="difficulte" id="difficulte" value="8" required>
-
-            <img src="./cartes/cartes_13.svg" alt="13"/>
-            <input type="radio" name="difficulte" id="difficulte" value="13" required>
-
-            <img src="./cartes/cartes_20.svg" alt="20"/>
-            <input type="radio" name="difficulte" id="difficulte" value="20" required>
-
-            <img src="./cartes/cartes_40.svg" alt="40"/>
-            <input type="radio" name="difficulte" id="difficulte" value="40" required>
-
-            <img src="./cartes/cartes_100.svg" alt="100"/>
-            <input type="radio" name="difficulte" id="difficulte" value="100" required>
-
-            <img src="./cartes/cartes_cafe.svg" alt="cafe"/>
-            <input type="radio" name="difficulte" id="difficulte" value="cafe" required>
-
-            <img src="./cartes/cartes_interro.svg" alt="?"/>
-            <input type="radio" name="difficulte" id="difficulte" value="?" required>
-
-            <br><br>
-            <input type="submit" id="vote" value="Voter">
-        </form>
-
-        <div>
-            <p>© 2022 - Planning Poker</p>
+        <div class="text-center">
+            <p>© 2023 - Planning Poker</p>
         </div>
     </div>
     <script src="difficultes.js"></script>
