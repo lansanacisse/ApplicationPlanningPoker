@@ -2,7 +2,7 @@
 <head>
     <title>Planning Poker</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
     <style>
         .red-background {
             background-color: red;
@@ -17,13 +17,13 @@
             <h1>Planning Poker</h1>
         </div>
         <div id="content">
-            <h2>Saisi des taches du projets!</h2>
+            <div id="jsonJoueur"></div>
             <img src="cartes/dashbord.png" alt="">
             <p>
         </div>
         
         <!-- Choix des difficultés -->
-        <form name="difficultes" method="POST" action ="difficultes.php">
+        <form name="difficultes" id ="difficultes" method="POST" action ="difficultes.php">
             <h3>Selectionner la difficulté</h3>
             <img src="./cartes/cartes_0.svg" alt="0"/>
             <input type="radio" name="difficulte" id="difficulte" value="0" required>

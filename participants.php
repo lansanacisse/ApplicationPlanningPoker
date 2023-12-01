@@ -1,9 +1,11 @@
 <?php
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Récupérer le nombre de participants
     $numParticipants = $_POST['participants'];
     $numTaches = $_POST['taches'];
-
+    $_SESSION['participants'] = $numParticipants;
+    $_SESSION['taches'] = $numTaches;
     // Créer un tableau associatif avec les noms des participants
     $participants = [];
     $taches = [];
