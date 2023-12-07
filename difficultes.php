@@ -8,9 +8,11 @@ $numTaches = 1;
 if (isset($_POST['difficulte'])) {
     $selectedDifficulte = $_POST['difficulte'];
     echo $_POST['difficulte'];
+    echo "  <script>clear()</script>";
 }else{
     echo "erreur";
 }
+// header('Location: difficultes.html');
 // echo $_POST['difficulte'];
 //     for ($i = 0; $i < $numTaches; $i++) {
 //         for ($j = 0; $j < $numParticipants; $j++) {

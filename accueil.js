@@ -14,22 +14,15 @@ function ajoutParticipants() {
         input.placeholder = 'Nom du participant ' + i;
 
         input.addEventListener('input', function() {
-            nomsParticipants[i - 1] = this.value;
+            nomsParticipants[i-1] = this.value;
         });
 
         container.appendChild(input);
         container.appendChild(document.createElement('br'));
 
-        console.log('Nom du participant ' + i + ':', nomsParticipants[i - 1]);
+        console.log('Nom du participant ' + i + ':', nomsParticipants[i-1]);
     }
 
-    let nomsInput = document.createElement('input');
-    nomsInput.type = 'hidden';
-    nomsInput.name = 'nomsParticipants';
-    nomsInput.value = JSON.stringify(nomsParticipants);
-
-    form.appendChild(nomsInput);
-    console.log('Noms des participants:', nomsParticipants);
 }
 function ajoutTaches(){
 
@@ -56,12 +49,6 @@ function ajoutTaches(){
         console.log('Tache ' + i + ':', taches[i - 1]);
     }
 
-    let tachesInput = document.createElement('input');
-    tachesInput.type = 'hidden';
-    tachesInput.name = 'nomsParticipants';
-    tachesInput.value = JSON.stringify(taches);
-
-    form.appendChild(tachesInput);
 
 }
 function ajoutParticipantsEtTaches(){

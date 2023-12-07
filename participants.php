@@ -25,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     file_put_contents('taches.json', $jsonTaches);
     file_put_contents('participantsEtTaches.json', $jsonDonnees);
     // Rediriger l'utilisateur vers une autre page après le traitement
-    header('Location: taches.html');
+    header('Location: difficultes.html');
     exit();
 }
 ?>
+
