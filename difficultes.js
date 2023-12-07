@@ -60,7 +60,7 @@ function traitementParticipant(data) {
     // Ajouter un gestionnaire d'événements pour le clic sur le bouton
     nomForm.addEventListener('submit', function (event) {
         // Afficher la personne suivante.
-        event.preventDefault();
+        // event.preventDefault();
         participantsVote++;
 
         if (participantsVote === data.tabParticipants.length) {
