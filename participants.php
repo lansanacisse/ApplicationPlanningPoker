@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     for ($i = 0; $i < $numTaches; $i++) {
         $taches[$i] = $_POST['tache' . ($i + 1)];
     }
+    
     $donnees = array('tabParticipants' => $participants, 'tabTaches' => $taches);
     // Convertir le tableau en format JSON
     $jsonParticipants = json_encode($participants);

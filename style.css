@@ -1,0 +1,84 @@
+/* Style du corps de la page */
+body {
+  font-family: Georgia, serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  color: #333;
+}
+
+/* Style de l'en-tête */
+header {
+  background-color: #007bff;
+  color: white;
+  padding: 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+header p {
+  margin-top: 5px;
+  font-size: 1.2em;
+}
+
+/* Style du contenu principal */
+#content {
+  padding: 20px;
+}
+
+/* Style des inputs */
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style des boutons */
+input[type="button"],
+input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Style des radios et images */
+.col-md-3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Style du footer */
+#footer,
+.text-center {
+  text-align: center;
+  margin-top: 30px;
+  padding: 10px 0;
+}
+
+.red-background {
+  background-color: red;
+  border-radius: 20px;
+
+}

@@ -1,14 +1,14 @@
 function ajoutParticipants() {
+    const numParticipants = document.getElementById('participants').value;
+    const nomsParticipants = [];
 
-    let numParticipants = document.getElementById('participants').value;
-    let nomsParticipants = [];
     console.log('Number of participants:', numParticipants);
 
-    let container = document.getElementById('participantsContainer');
-    let form = document.getElementById('initialisation');
+    const container = document.getElementById('participantsContainer');
+    const form = document.getElementById('initialisation');
 
     for (let i = 1; i <= numParticipants; i++) {
-        let input = document.createElement('input');
+        const input = document.createElement('input');
         input.type = 'text';
         input.name = 'participant' + i;
         input.placeholder = 'Nom du participant ' + i;
@@ -23,7 +23,7 @@ function ajoutParticipants() {
         console.log('Nom du participant ' + i + ':', nomsParticipants[i - 1]);
     }
 
-    let nomsInput = document.createElement('input');
+    const nomsInput = document.createElement('input');
     nomsInput.type = 'hidden';
     nomsInput.name = 'nomsParticipants';
     nomsInput.value = JSON.stringify(nomsParticipants);
@@ -31,20 +31,21 @@ function ajoutParticipants() {
     form.appendChild(nomsInput);
     console.log('Noms des participants:', nomsParticipants);
 }
-function ajoutTaches(){
 
-    let numTaches = document.getElementById('taches').value;
-    let taches = [];
-    console.log('Number of tahces:', numTaches);
+function ajoutTaches() {
+    const numTaches = document.getElementById('taches').value;
+    const taches = [];
 
-    let containerTaches = document.getElementById('tachesContainer');
-    let form = document.getElementById('initialisation');
+    console.log('Number of taches:', numTaches);
+
+    const containerTaches = document.getElementById('tachesContainer');
+    const form = document.getElementById('initialisation');
 
     for (let i = 1; i <= numTaches; i++) {
-        let input = document.createElement('input');
+        const input = document.createElement('input');
         input.type = 'text';
         input.name = 'tache' + i;
-        input.placeholder = 'Ecrire la tache  ' + i;
+        input.placeholder = 'Ecrire la tache ' + i;
 
         input.addEventListener('input', function() {
             taches[i - 1] = this.value;
@@ -56,20 +57,36 @@ function ajoutTaches(){
         console.log('Tache ' + i + ':', taches[i - 1]);
     }
 
-    let tachesInput = document.createElement('input');
+    const tachesInput = document.createElement('input');
     tachesInput.type = 'hidden';
-    tachesInput.name = 'nomsParticipants';
+    tachesInput.name = 'nomsTaches';
     tachesInput.value = JSON.stringify(taches);
 
     form.appendChild(tachesInput);
-
 }
-function ajoutParticipantsEtTaches(){
+
+function sauvegardeParticipantsEtTaches() {
+    const participants = JSON.parse(document.getElementsByName('nomsParticipants')[0].value);
+    const taches = JSON.parse(document.getElementsByName('nomsTaches')[0].value);
+
+    const data = {
+        participants,
+        taches
+    };
+
+    const jsonData = JSON.stringify(data);
+
+    // Code to save jsonData to a file
+
+    console.log('Participants et taches sauvegardés:', jsonData);
+}
+
+function ajoutParticipantsEtTaches() {
     ajoutParticipants();
     ajoutTaches();
-    let submitContainer = document.getElementById('submitContainer');
-    let submitButton = document.createElement('input');
+    const submitContainer = document.getElementById('submitContainer');
+    const submitButton = document.createElement('input');
     submitButton.type = 'submit';
-    submitButton.value = 'Etape Suivante'
-    submitContainer.appendChild(submitButton)
+    submitButton.value = 'Etape Suivante';
+    submitContainer.appendChild(submitButton);
 }
