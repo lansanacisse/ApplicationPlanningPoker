@@ -14,16 +14,16 @@ function ajoutParticipants() {
         input.placeholder = 'Nom du participant ' + i;
 
         input.addEventListener('input', function() {
-            nomsParticipants[i - 1] = this.value;
+            nomsParticipants[i-1] = this.value;
         });
 
         container.appendChild(input);
         container.appendChild(document.createElement('br'));
 
-        console.log('Nom du participant ' + i + ':', nomsParticipants[i - 1]);
+        console.log('Nom du participant ' + i + ':', nomsParticipants[i-1]);
     }
 
-    const nomsInput = document.createElement('input');
+    let nomsInput = document.createElement('input');
     nomsInput.type = 'hidden';
     nomsInput.name = 'nomsParticipants';
     nomsInput.value = JSON.stringify(nomsParticipants);
@@ -57,31 +57,15 @@ function ajoutTaches() {
         console.log('Tache ' + i + ':', taches[i - 1]);
     }
 
-    const tachesInput = document.createElement('input');
+    let tachesInput = document.createElement('input');
     tachesInput.type = 'hidden';
-    tachesInput.name = 'nomsTaches';
+    tachesInput.name = 'nomsParticipants';
     tachesInput.value = JSON.stringify(taches);
 
     form.appendChild(tachesInput);
+
 }
-
-function sauvegardeParticipantsEtTaches() {
-    const participants = JSON.parse(document.getElementsByName('nomsParticipants')[0].value);
-    const taches = JSON.parse(document.getElementsByName('nomsTaches')[0].value);
-
-    const data = {
-        participants,
-        taches
-    };
-
-    const jsonData = JSON.stringify(data);
-
-    // Code to save jsonData to a file
-
-    console.log('Participants et taches sauvegardés:', jsonData);
-}
-
-function ajoutParticipantsEtTaches() {
+function ajoutParticipantsEtTaches(){
     ajoutParticipants();
     ajoutTaches();
     const submitContainer = document.getElementById('submitContainer');

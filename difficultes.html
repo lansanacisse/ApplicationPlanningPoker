@@ -23,12 +23,12 @@
         
         <!-- Choix des difficultés -->
        <div  class="container ">
-            <form class="row g-4" name="difficultes" id ="difficultes" method="POST" action ="difficultes.php">
-                <h3 class="text-center">Selectionner la difficulté</h3>
-                
+        <h3 class="text-center">Selectionner la difficulté</h3>
+
+            <form class="row g-4" name="difficultes" id ="difficultes" method="POST" action="difficultes.php">
                 <div class="col-md-3 ">
                     <img src="./cartes/cartes_0.svg" alt="0"/>
-                    <input type="radio" name="difficulte" id="difficulte" value="0" required>
+                    <input type="radio" name="difficulte" id="difficulte0" value="0" required>
                 </div>
 
                 <div class="col-md-3">
@@ -86,7 +86,8 @@
                     <input type="radio" name="difficulte" id="difficulte" value="?" required>
                 </div>
              
-            
+                <input type="hidden" name="votes" id="tabVotes" value="">
+                
                 <input type = "submit" id="continuer"  value="Voter" class="text-center">
              
             </form>
