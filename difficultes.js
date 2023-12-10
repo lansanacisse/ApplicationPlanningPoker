@@ -85,46 +85,50 @@ function traitementParticipant(data) {
     // Ajouter un gestionnaire d'événements pour le clic sur le bouton
     nomForm.addEventListener('submit', function (event) {
 
-         // Empêcher la soumission par défaut du formulaire
-        event.preventDefault();
+        if ( 
+            currentIndexParticipant === data.tabParticipants.length - 1 &&
+            currentIndexTache === data.tabTaches.length - 1
+        ) {
+            // C'est la dernière tâche, le dernier participant
+            // Si il n'a pas de divergeance, on soumet le formulaire
+            if(!parole()){
+            nomForm.submit();
+            } else {
+                // Sinon, empêcher la soumission par défaut du formulaire
+                event.preventDefault();
+            }
 
+        } else {
+         // Si c'est pas la dernière tache, le dernier participant : empêcher la soumission par défaut du formulaire
+        event.preventDefault();
+        }
+
+        // Afficher l'index du tache en cours
         console.log('currentIndexTache', currentIndexTache);
         
-        // Incrementer le nombre de participants qui ont voté
-        participantsVote++;
         
         //Fonction pour stocker les votes dans un tableau
         stocker();
 
+        // Incrementer le nombre de participants qui ont voté
+        participantsVote++;
+
         // Reinitialiser le formulaire
         reinitialiser_formulaire();
 
-        if (
-            participantsVote === data.tabParticipants.length &&
-            currentIndexParticipant === data.tabParticipants.length - 1 &&
-            currentIndexTache === data.tabTaches.length - 1
-        ) {
-            // C'est la dernière tâche, le dernier participant, autoriser la soumission
-            if(!parole()){
-            nomForm.submit(); // Soumettre le formulaire
-            }
-
-        } else if (participantsVote === data.tabParticipants.length) { //Tous le participants votent mais pas la dernière tâche
+        if (participantsVote === data.tabParticipants.length) { 
+            //Tous le participants ont voté mais pas la dernière tâche
             
-            let res = parole();
+            // Verifier si il y a des divergences
+            parole();
 
             // Remettre le nombre des participants qui ont voté à 0
             participantsVote = 0;
             
-            if(!res){
-                // Si les participants ont voté et pas de divergeance, on passe au participant suivant et on incrémente l'index de la tâche
-                // Cette ligne permet de passer au participant suivant dans un tableau circulaire. Une fois que currentIndexParticipant atteint la fin du tableau, il revient au début, créant ainsi une boucle.
-                currentIndexParticipant = (currentIndexParticipant + 1) % data.tabParticipants.length;
-            }else{
 
-                currentIndexParticipant = 0;
-            }
-
+            // Modifier currentIndexParticipant pour passer au participant suivant (modulo pour revenir au début du tableau)
+            currentIndexParticipant = (currentIndexParticipant + 1) % data.tabParticipants.length;
+            
             // Afficher le participant suivant
             displayParticipant(data.tabParticipants, currentIndexParticipant);
 
@@ -134,7 +138,11 @@ function traitementParticipant(data) {
 
         } else {
             // Il reste des participants à faire voter
+
+            // Modifier currentIndexParticipant pour passer au participant suivant
             currentIndexParticipant = (currentIndexParticipant + 1) % data.tabParticipants.length;
+
+            // Afficher le participant suivant
             displayParticipant(data.tabParticipants, currentIndexParticipant);
         }
     });
@@ -157,6 +165,8 @@ function displayParticipant(data, index) {
             jsonDataContainer.innerHTML = `<p> ${person} à toi de voter</p>`;
         }
     } else {
+
+        // Message d'erreur si le container n'existe pas
         jsonDataContainer.innerHTML = `<p>Aucune donnée disponible.</p>`;
     }
 }
@@ -177,6 +187,8 @@ function displayTache(data, index) {
             jsonDataContainer.innerHTML = `<p> On traite la tache : ${tache}</p>`;
         }
     } else {
+
+        // Message d'erreur si le container n'existe pas
         jsonDataContainer.innerHTML = `<p>Aucune donnée disponible.</p>`;
     }
 }
