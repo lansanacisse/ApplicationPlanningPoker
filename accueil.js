@@ -1,22 +1,34 @@
 function ajoutParticipants() {
 
+    //Recuperation du nombre de participants
     let numParticipants = document.getElementById('participants').value;
+
+    // Creation d'un tableau pour stocker les noms des participants
     let nomsParticipants = [];
+
+    // Afficher le nombre de participants dans la console
     console.log('Number of participants:', numParticipants);
 
+    // Recuperation du container pour les participants
     let container = document.getElementById('participantsContainer');
-    let form = document.getElementById('initialisation');
 
+    // Ajout des champs pour les participants en fonction du nombre de participants
     for (let i = 1; i <= numParticipants; i++) {
+
+        // Creation d'un champ de texte pour le nom du participant
         let input = document.createElement('input');
         input.type = 'text';
         input.name = 'participant' + i;
         input.placeholder = 'Nom du participant ' + i;
 
+        // Ajout d'un event listener pour recuperer le nom du participant
         input.addEventListener('input', function() {
+
+            // Ajout du nom du participant dans le tableau
             nomsParticipants[i-1] = this.value;
         });
 
+        // Ajout du champ de texte dans le container
         container.appendChild(input);
         container.appendChild(document.createElement('br'));
 
@@ -26,26 +38,37 @@ function ajoutParticipants() {
 }
 function ajoutTaches(){
 
+    //Recuperation du nombre de taches
     let numTaches = document.getElementById('taches').value;
+
+    // Creation d'un tableau pour stocker les noms des taches
     let taches = [];
+
+    // Afficher le nombre de taches dans la console
     console.log('Number of tahces:', numTaches);
 
+    // Recuperation du container pour les taches
     let containerTaches = document.getElementById('tachesContainer');
-    let form = document.getElementById('initialisation');
 
+    // Ajout des champs pour les taches en fonction du nombre de taches
     for (let i = 1; i <= numTaches; i++) {
+
+        // Creation d'un champ de texte pour le nom de la tache
         let input = document.createElement('input');
         input.type = 'text';
         input.name = 'tache' + i;
         input.placeholder = 'Ecrire la tache  ' + i;
 
+        // Ajout d'un event listener pour recuperer le nom de la tache
         input.addEventListener('input', function() {
             taches[i - 1] = this.value;
         });
 
+        // Ajout du champ de texte dans le container
         containerTaches.appendChild(input);
         containerTaches.appendChild(document.createElement('br'));
 
+        // Afficher le nom de la tache dans la console
         console.log('Tache ' + i + ':', taches[i - 1]);
     }
 
@@ -60,7 +83,5 @@ function ajoutParticipantsEtTaches(){
     const submitButton = document.createElement('input');
     submitButton.type = 'submit';
     submitButton.value = 'Etape Suivante'
-    submitContainer.appendChild(submitButton);
-    submitButton.value = 'Etape Suivante';
     submitContainer.appendChild(submitButton);
 }
