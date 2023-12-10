@@ -208,7 +208,7 @@ function stocker(){
             // console.log('vote', vote);
 
             // Ajouter le vote dans le tableau votes
-            votes.push(vote);
+             votes.push(vote);
 
             // Afficher le tableau votes dans la console
             console.log('votes', votes);
@@ -221,24 +221,41 @@ function stocker(){
 }
 function parole() {
 
-    //Initialiser les variables minVote et maxVote
-    let minVote = 500;
-    let maxVote = 0;
+    //Initialiser les variables minVote, maxVote, nomMin, nomMax, cafes et abstentions
+    let minVote = Infinity;
+    let maxVote = -Infinity;
+    let nomMin= '';
+    let nomMax= '';
+    let cafes = 0;
+    let abstentions = 0;
 
     //Parcourir le tableau votes pour trouver le min et le max. Ce parcours se fait de tache en tache
     for (let i = currentIndexTache * data.tabParticipants.length; i < (currentIndexTache + 1) * data.tabParticipants.length; i++) {
-        if (votes[i] > maxVote) {
-            maxVote = votes[i];
+        
+        // Convertir la valeur du vote en nombre
+        let valeurNumerique = parseInt(votes[i]);
+
+        // Si la valeur du vote est un nombre et n'est pas '?' ou 'cafe'
+        if (!isNaN(valeurNumerique)) {
+            if (valeurNumerique > maxVote) {
+                maxVote = valeurNumerique;
+                nomMax = data.tabParticipants[i % data.tabParticipants.length];
+            }
+            if (valeurNumerique < minVote) {
+                minVote = valeurNumerique;
+                nomMin = data.tabParticipants[i % data.tabParticipants.length];
+            }
+        } else if (votes[i] == 'cafe'){
+            cafes++;
+        } else {
+            abstentions++;
         }
-        if (votes[i] < minVote) {
-            minVote = votes[i];
-        }
-    
     }
 
-    if(minVote != maxVote)
+    // Si il y a des divergences entre les participants ou si tous les participants ont voté 'cafe' ou 'abstention'
+    if(minVote != maxVote && minVote != Infinity && maxVote != -Infinity)
     {
-        alert("Il y a des divergences, il faut en discuter");
+        alert("Il y a des divergences entre "+ nomMin + " et " + nomMax + ", il faut en discuter");
 
         //Eliminer les cases du tableau votes de la tache en cours
         votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
@@ -250,7 +267,39 @@ function parole() {
         reinitialiser_formulaire();
         
         return true;
+
+    }else if (cafes == data.tabParticipants.length){
+
+        alert("Pause café!");
+        
+        //Eliminer les cases du tableau votes de la tache en cours
+        votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
+
+        // Decrementer l'index de la tache en cours vu qu'on doit revoter
+        currentIndexTache = currentIndexTache - 1;
+
+        // Reinitialiser le formulaire
+        reinitialiser_formulaire();
+        
+        return true;
+
+    } else if (abstentions == data.tabParticipants.length){
+
+        alert("Abstention. REVOTER.");
+        
+        //Eliminer les cases du tableau votes de la tache en cours
+        votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
+
+        // Decrementer l'index de la tache en cours vu qu'on doit revoter
+        currentIndexTache = currentIndexTache - 1;
+
+        // Reinitialiser le formulaire
+        reinitialiser_formulaire();
+
+        return true;
+
     }
+
     return false;
 }
 
