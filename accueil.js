@@ -79,6 +79,5 @@ function ajoutParticipantsEtTaches(){
     submitButton.type = 'submit';
     submitButton.value = 'Etape Suivante'
     submitContainer.appendChild(submitButton);
-    submitButton.value = 'Etape Suivante';
-    submitContainer.appendChild(submitButton);
+
 }
