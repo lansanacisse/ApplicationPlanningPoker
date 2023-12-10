@@ -73,10 +73,12 @@ function ajoutParticipantsEtTaches(){
     ajoutParticipants();
     ajoutTaches();
 
-    //Creation d'un bouton pour passer à l'etape de voote et envoyer le formulaire
-    let submitContainer = document.getElementById('submitContainer');
-    let submitButton = document.createElement('input');
+    //Creation d'un bouton pour passer à l'etape de vote et ajout dans le container
+    const submitContainer = document.getElementById('submitContainer');
+    const submitButton = document.createElement('input');
     submitButton.type = 'submit';
     submitButton.value = 'Etape Suivante'
+    submitContainer.appendChild(submitButton);
+    submitButton.value = 'Etape Suivante';
     submitContainer.appendChild(submitButton);
 }
