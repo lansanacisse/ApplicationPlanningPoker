@@ -9,6 +9,8 @@ let votes = [];
 // Variable pour stocker la data json
 let data;
 
+const nomForm = document.getElementById('difficultes');
+
 function fondRouge() {
 
     // Recuperer les boutons radio
@@ -73,7 +75,7 @@ let currentIndexTache = 0;
 function traitementParticipant(data) {
 
     // Recuperer le formulaire
-    const nomForm = document.getElementById('difficultes');
+    // const nomForm = document.getElementById('difficultes');
 
     // Afficher la première personne
     displayParticipant(data.tabParticipants, currentIndexParticipant);
@@ -85,24 +87,10 @@ function traitementParticipant(data) {
     // Ajouter un gestionnaire d'événements pour le clic sur le bouton
     nomForm.addEventListener('submit', function (event) {
 
-        if ( 
-            currentIndexParticipant === data.tabParticipants.length - 1 &&
-            currentIndexTache === data.tabTaches.length - 1
-        ) {
-            // C'est la dernière tâche, le dernier participant
-            // Si il n'a pas de divergeance, on soumet le formulaire
-            if(!parole()){
-            nomForm.submit();
-            } else {
-                // Sinon, empêcher la soumission par défaut du formulaire
-                event.preventDefault();
-            }
-
-        } else {
-         // Si c'est pas la dernière tache, le dernier participant : empêcher la soumission par défaut du formulaire
-        event.preventDefault();
-        }
-
+        // Si pas c'est la dernière tâche et le dernier participant, on ne soumet pas le formulaire
+        if (!(currentIndexParticipant === data.tabParticipants.length - 1 &&currentIndexTache === data.tabTaches.length - 1))
+        {event.preventDefault();}
+        
         // Afficher l'index du tache en cours
         console.log('currentIndexTache', currentIndexTache);
         
@@ -120,7 +108,18 @@ function traitementParticipant(data) {
             //Tous le participants ont voté mais pas la dernière tâche
             
             // Verifier si il y a des divergences
-            parole();
+            let divergences = parole();
+
+            // Si c'est la dernière tâche et le dernier participant et qu'il n'y a pas de divergences
+        if (currentIndexParticipant === data.tabParticipants.length - 1 &&
+            currentIndexTache === data.tabTaches.length - 1 &&
+            !divergences) {
+            // Soumettre le formulaire
+            nomForm.submit();
+        } else {
+            // Sinon, empêcher la soumission par défaut du formulaire
+            event.preventDefault();
+        }
 
             // Remettre le nombre des participants qui ont voté à 0
             participantsVote = 0;
@@ -216,9 +215,11 @@ function stocker(){
     });
 
     // Stocker le tableau votes dans un champ caché du formulaire pour les envoyer au serveur php
-    document.getElementById('tabVotes').value = JSON.stringify(votes);
+    document.getElementById('tabVotes').value = votes;
 
 }
+
+
 function parole() {
 
     //Initialiser les variables minVote, maxVote, nomMin, nomMax, cafes et abstentions
@@ -245,13 +246,14 @@ function parole() {
                 minVote = valeurNumerique;
                 nomMin = data.tabParticipants[i % data.tabParticipants.length];
             }
-        } else if (votes[i] == 'cafe'){
-            cafes++;
-        } else {
+        } else if (votes[i] == '?'){
             abstentions++;
+        } else {
+            cafes++;
         }
     }
 
+    
     // Si il y a des divergences entre les participants ou si tous les participants ont voté 'cafe' ou 'abstention'
     if(minVote != maxVote && minVote != Infinity && maxVote != -Infinity)
     {
@@ -265,13 +267,14 @@ function parole() {
 
         // Reinitialiser le formulaire
         reinitialiser_formulaire();
-        
+
         return true;
 
-    }else if (cafes == data.tabParticipants.length){
+    } 
+    if (cafes == data.tabParticipants.length){
 
-        alert("Pause café!");
-        
+        alert("Pause café !");
+
         //Eliminer les cases du tableau votes de la tache en cours
         votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
 
@@ -280,10 +283,15 @@ function parole() {
 
         // Reinitialiser le formulaire
         reinitialiser_formulaire();
-        
-        return true;
 
-    } else if (abstentions == data.tabParticipants.length){
+        // return true;
+        document.getElementById('indexTache').value = currentIndexTache;
+
+        nomForm.submit();
+
+
+    } 
+    if (abstentions == data.tabParticipants.length){
 
         alert("Abstention. REVOTER.");
         
@@ -298,6 +306,27 @@ function parole() {
 
         return true;
 
+    }
+    else if (
+        (
+            ((abstentions < data.tabParticipants.length) && (abstentions >= 1)) || 
+            ((cafes < data.tabParticipants.length) && (cafes >= 1))
+        ) && 
+        (minVote == maxVote)
+    ) {// Si on a au moins une abstention ou un café et que tous les votes sont égaux
+        
+        alert("Unanimité non achevée. Il faut revoter.");
+        
+        //Eliminer les cases du tableau votes de la tache en cours
+        votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
+
+        // Decrementer l'index de la tache en cours vu qu'on doit revoter
+        currentIndexTache = currentIndexTache - 1;
+
+        // Reinitialiser le formulaire
+        reinitialiser_formulaire();
+
+        return true;
     }
 
     return false;
