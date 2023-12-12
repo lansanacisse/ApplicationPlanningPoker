@@ -1,5 +1,11 @@
 function ajoutParticipants() {
 
+    //Recuperation de la methode de vote
+    let methode = document.getElementById('methode').value;
+
+    // Dans le fichier source.js
+    localStorage.setItem('methodeVote', methode);
+
     //Recuperation du nombre de participants
     let numParticipants = document.getElementById('participants').value;
 

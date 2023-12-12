@@ -9,6 +9,10 @@ let votes = [];
 // Variable pour stocker la data json
 let data;
 
+// Recuperer la methode de vote
+let methodeVote = localStorage.getItem('methodeVote')
+
+// Recuperer le formulaire
 const nomForm = document.getElementById('difficultes');
 
 function fondRouge() {
@@ -107,8 +111,12 @@ function traitementParticipant(data) {
         if (participantsVote === data.tabParticipants.length) { 
             //Tous le participants ont voté mais pas la dernière tâche
             
-            // Verifier si il y a des divergences
-            let divergences = parole();
+            // Verifier la méthode pour savoir quelle fonction appeler
+            if (methodeVote == 'classique') {
+                let divergences = parole();
+            }else{
+                let divergences = parole_moyenne();
+            }
 
             // Si c'est la dernière tâche et le dernier participant et qu'il n'y a pas de divergences
         if (currentIndexParticipant === data.tabParticipants.length - 1 &&
@@ -220,6 +228,152 @@ function stocker(){
 }
 
 
+let tours = 0;
+function parole_moyenne(){
+    //Initialiser les variables minVote, maxVote, nomMin, nomMax, cafes et abstentions
+    let minVote = Infinity;
+    let maxVote = -Infinity;
+    let nomMin= '';
+    let nomMax= '';
+    let cafes = 0;
+    let abstentions = 0;
+
+    //Parcourir le tableau votes pour trouver le min et le max. Ce parcours se fait de tache en tache
+    for (let i = currentIndexTache * data.tabParticipants.length; i < (currentIndexTache + 1) * data.tabParticipants.length; i++) {
+        
+        // Convertir la valeur du vote en nombre
+        let valeurNumerique = parseInt(votes[i]);
+
+        // Si la valeur du vote est un nombre et n'est pas '?' ou 'cafe'
+        if (!isNaN(valeurNumerique)) {
+            if (valeurNumerique > maxVote) {
+                maxVote = valeurNumerique;
+                nomMax = data.tabParticipants[i % data.tabParticipants.length];
+            }
+            if (valeurNumerique < minVote) {
+                minVote = valeurNumerique;
+                nomMin = data.tabParticipants[i % data.tabParticipants.length];
+            }
+        } else if (votes[i] == '?'){
+            abstentions++;
+        } else {
+            cafes++;
+        }
+    }
+
+    
+    // Si il y a des divergences entre les participants ou si tous les participants ont voté 'cafe' ou 'abstention'
+    if(minVote != maxVote && minVote != Infinity && maxVote != -Infinity)
+    {
+        if (tours == 0) {
+            alert("Il y a des divergences entre "+ nomMin + " et " + nomMax + ", il faut en discuter");
+
+            //Eliminer les cases du tableau votes de la tache en cours
+            votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
+
+            // Decrementer l'index de la tache en cours vu qu'on doit revoter
+            currentIndexTache = currentIndexTache - 1;
+
+            // Incrementer le nombre de tours
+            tours++;
+
+            // Reinitialiser le formulaire
+            reinitialiser_formulaire();
+
+            return true;
+        }else{
+            // Si on a deja revoté une fois
+            // On fait la moyenne entre le min et le max
+            moyenne = (minVote + maxVote) / 2;
+
+            // On elimine les 3 cases du tableau votes de la tache en cours
+            votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
+
+            // On ajoute la moyenne 3 fois dans le tableau votes
+            votes.push(moyenne, moyenne, moyenne);
+
+            // On reinitialise le nombre de tours
+            tours = 0;
+        }
+
+    } 
+    if (cafes == data.tabParticipants.length){
+
+        alert("Pause café !");
+
+        //Eliminer les cases du tableau votes de la tache en cours
+        votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
+
+        // Decrementer l'index de la tache en cours vu qu'on doit revoter
+        currentIndexTache = currentIndexTache - 1;
+
+        // Reinitialiser le formulaire
+        reinitialiser_formulaire();
+
+        // return true;
+        document.getElementById('indexTache').value = currentIndexTache;
+
+        nomForm.submit();
+
+
+    } 
+    if (abstentions == data.tabParticipants.length){
+
+        alert("Abstention. REVOTER.");
+        
+        //Eliminer les cases du tableau votes de la tache en cours
+        votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
+
+        // Decrementer l'index de la tache en cours vu qu'on doit revoter
+        currentIndexTache = currentIndexTache - 1;
+
+        // Reinitialiser le formulaire
+        reinitialiser_formulaire();
+
+        return true;
+
+    }
+    else if (
+        (
+            ((abstentions < data.tabParticipants.length) && (abstentions >= 1)) || 
+            ((cafes < data.tabParticipants.length) && (cafes >= 1))
+        ) && 
+        (minVote == maxVote)
+    ) {// Si on a au moins une abstention ou un café et que tous les votes sont égaux
+        if (tours == 0) {
+            alert("Unanimité non achevée. Il faut revoter.");
+            
+            //Eliminer les cases du tableau votes de la tache en cours
+            votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
+
+            // Decrementer l'index de la tache en cours vu qu'on doit revoter
+            currentIndexTache = currentIndexTache - 1;
+            
+            // Incrementer le nombre de tours
+            tours++;
+
+            // Reinitialiser le formulaire
+            reinitialiser_formulaire();
+
+            return true;
+        }else {
+            // Si on a deja revoté une fois
+            // On fait la moyenne entre le min et le max
+            moyenne = (minVote + maxVote) / 2;
+
+            // On elimine les 3 cases du tableau votes de la tache en cours
+            votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
+
+            // On ajoute la moyenne 3 fois dans le tableau votes
+            votes.push(moyenne, moyenne, moyenne);
+
+            // On reinitialise le nombre de tours
+            tours = 0;
+        }
+    }
+
+    return false;
+}
 function parole() {
 
     //Initialiser les variables minVote, maxVote, nomMin, nomMax, cafes et abstentions
