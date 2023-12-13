@@ -1,29 +1,48 @@
-window.addEventListener("DOMContentLoaded",ajoutTache);
+// A l'ouverture de la page on execute la fonction initPage
+onload = initPage;
 
-function ajoutTache() {
-    let tacheInput = document.getElementById("tache");
-    let tachesInput = document.createElement('input');
-    tachesInput.type ='hidden';
-    tachesInput.name = 'toutesLesTaches';
+function recupererLesDonnees() {
+    // Recuperer les données json
+    fetch('votes.json')
+        .then(response => response.json())
+        .then(dataObject => {
+            afficherTachesEtDifficultes(dataObject);
+            console.log(dataObject);
+        })
+        .catch(error => console.error('Désolé, une erreur est survenue', error));
+}
 
-    // Récupérer le tableau de tâches actuel depuis le champ caché
-    let taches = JSON.parse(document.getElementById("toutesLesTaches").value);
+function afficherTachesEtDifficultes(dataObject) {
+    // Afficher les taches et les difficultes
+    displayTacheEtDifficulte(dataObject);
+}
 
-    // Ajouter la nouvelle tâche
-    let nouvelleTache = tacheInput.value.trim();
-    if (nouvelleTache !== '') {
-        taches.push(nouvelleTache);
+function displayTacheEtDifficulte(data) {
 
-        // Mettre à jour la valeur du champ caché avec le tableau mis à jour
-        tachesInput.value = JSON.stringify(taches);
+    // Recuperer le container pour les données json
+    const jsonDataContainer = document.getElementById('jsonTaches');
 
-        // Réinitialiser le champ de saisie
-        tacheInput.value = '';
+    if (jsonDataContainer) {
+        // Si le container existe, on affiche les données json
+        
+            // Recuperer les  tache à afficher
+            let keys = Object.keys(data);
 
-        // Ajouter le champ caché au formulaire
-        document.getElementById("saisieTache").appendChild(tachesInput);
+            // Afficher les taches
+            keys.forEach(key => {
+                let difficulte = data[key];
+                // Afficher la tache dans le container
+                jsonDataContainer.innerHTML += `<p>La tache : ${key}, a une difficulte de : ${difficulte}</p>`;
+            })
+    } else {
+
+        // Message d'erreur si le container n'existe pas
+        jsonDataContainer.innerHTML = `<p>Aucune donnée disponible.</p>`;
     }
+}
 
-    // Retourner false pour empêcher la soumission du formulaire
-    return false;
+// Fonction pour initialiser la page
+function initPage() {
+    console.log('Page chargee');
+    recupererLesDonnees();
 }

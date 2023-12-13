@@ -65,4 +65,7 @@ else{
     // Ecrire le JSON dans un nouveau fichier
     file_put_contents('votesCafe.json', $tachesEtDifficultesJson);
 }
+
+header('Location: taches.html');
+
 ?>

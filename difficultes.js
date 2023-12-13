@@ -1,5 +1,3 @@
-// document.addEventListener('DOMContentLoaded', initPage);
-
 // A l'ouverture de la page on execute la fonction initPage
 onload = initPage;
 
@@ -11,6 +9,9 @@ let data;
 
 // Recuperer la methode de vote
 let methodeVote = localStorage.getItem('methodeVote')
+
+// Afficher la methode de vote dans la console
+console.log('methodeVote', methodeVote);
 
 // Recuperer le formulaire
 const nomForm = document.getElementById('difficultes');
@@ -114,8 +115,10 @@ function traitementParticipant(data) {
             // Verifier la méthode pour savoir quelle fonction appeler
             if (methodeVote == 'classique') {
                 let divergences = parole();
+                console.log('Je suis entre dans la fonction parole classique');
             }else{
                 let divergences = parole_moyenne();
+                console.log('Je suis entre dans la fonction parole moyenne');
             }
 
             // Si c'est la dernière tâche et le dernier participant et qu'il n'y a pas de divergences
@@ -289,6 +292,9 @@ function parole_moyenne(){
             // On elimine les 3 cases du tableau votes de la tache en cours
             votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
 
+            // Convertir moyenne en string
+            moyenne = moyenne.toString();
+
             // On ajoute la moyenne 3 fois dans le tableau votes
             votes.push(moyenne, moyenne, moyenne);
 
@@ -363,6 +369,9 @@ function parole_moyenne(){
 
             // On elimine les 3 cases du tableau votes de la tache en cours
             votes.splice(currentIndexTache * data.tabParticipants.length, data.tabParticipants.length);
+
+            // Convertir moyenne en string
+            moyenne = moyenne.toString();
 
             // On ajoute la moyenne 3 fois dans le tableau votes
             votes.push(moyenne, moyenne, moyenne);

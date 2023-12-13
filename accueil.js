@@ -1,8 +1,11 @@
 function ajoutParticipants() {
 
     //Recuperation de la methode de vote
-    let methode = document.getElementById('methode').value;
+    let methode = document.querySelector('input[name="methode"]:checked').value;
 
+    // Afficher la methode de vote dans la console
+    console.log('Methode de vote:', methode);
+    
     // Dans le fichier source.js
     localStorage.setItem('methodeVote', methode);
 
