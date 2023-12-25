@@ -22,8 +22,5 @@ jobs:
         npm install
         npm install --save-dev jest @babel/core @babel/preset-env babel-jest ts-jest
 
-    - name: Build application
-      run: npm run build
-
     - name: Run tests
       run: npm test
