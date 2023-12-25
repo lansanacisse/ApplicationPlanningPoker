@@ -1,7 +1,7 @@
 {
   "name": "ApplicationPlanningPoker",
   "version": "1.0.0",
-  "description": " Le Planning Poker permet une estimation collective et rapide des tâches à réaliser dans un projet en utilisant le consensus de l'équipes",
+  "description": "Le Planning Poker permet une estimation collective et rapide des tâches à réaliser dans un projet en utilisant le consensus de l'équipe",
   "main": "acceuil.js",
   "scripts": {
     "start": "node index.js",
@@ -9,11 +9,10 @@
   },
   "dependencies": {
     "package1": "^1.0.0",
-    "package2": "^2.1.0",
-    
+    "package2": "^2.1.0"
   },
   "devDependencies": {
     "dev-package1": "^1.0.0",
-    "dev-package2": "^2.1.0",
-  },
+    "dev-package2": "^2.1.0"
+  }
 }
