@@ -1,48 +1,26 @@
-name: Intégration Complète
+name: Tests unitaires Javascript
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14'
+      - name: Set up node
+        uses: actions/setup-node@v4
 
-    - name: Install dependencies
-      run: |
-        npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Install Jest and Babel dependencies
-      run: |
-        npm install --save-dev jest @babel/preset-env babel-jest ts-jest
-
-    - name: Run tests
-      run: npm test
-
-  test-unitaire:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14'
-
-    - name: Install dependencies for Test_unitaire_javascript
-      run: |
-        npm install
-
-    - name: Run unit tests
-      run: npm test
+      - name: Run tests
+        run: npm run test
