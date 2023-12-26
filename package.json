@@ -4,7 +4,7 @@
   "description": "Le Planning Poker permet une estimation collective et rapide des tâches à réaliser dans un projet en utilisant le consensus de l'équipe",
   "main": "acceuil.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --config jest.config.js"
   },
   "jest": {
     "testEnvironment": "jsdom"
