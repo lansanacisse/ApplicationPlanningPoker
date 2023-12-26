@@ -1,0 +1,32 @@
+{
+    "tests": [
+        {
+            "name": "Test avec m\u00e9thode de vote A et 5 participants",
+            "input": {
+                "methodeVote": "A",
+                "numParticipants": 5
+            },
+            "expectedOutput": {
+                "localStorage": {
+                    "methodeVote": "A"
+                },
+                "consoleLog": "Methode de vote: A",
+                "participantsCount": 5
+            }
+        },
+        {
+            "name": "Test avec m\u00e9thode de vote B et 10 participants",
+            "input": {
+                "methodeVote": "B",
+                "numParticipants": 10
+            },
+            "expectedOutput": {
+                "localStorage": {
+                    "methodeVote": "B"
+                },
+                "consoleLog": "Methode de vote: B",
+                "participantsCount": 10
+            }
+        }
+    ]
+}

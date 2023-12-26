@@ -1,0 +1,37 @@
+{
+    "tests": [
+        {
+            "name": "Test avec donn\u00e9es JSON valides",
+            "input": {
+                "jsonResponse": {
+                    "votes": [
+                        {
+                            "id": 1,
+                            "vote": "A"
+                        },
+                        {
+                            "id": 2,
+                            "vote": "B"
+                        }
+                    ]
+                }
+            },
+            "expectedOutput": {
+                "dataDisplayed": true,
+                "consoleLog": "Object with votes",
+                "errorLog": null
+            }
+        },
+        {
+            "name": "Test avec erreur de chargement JSON",
+            "input": {
+                "jsonResponse": "error"
+            },
+            "expectedOutput": {
+                "dataDisplayed": false,
+                "consoleLog": null,
+                "errorLog": "D\u00e9sol\u00e9, une erreur est survenue"
+            }
+        }
+    ]
+}

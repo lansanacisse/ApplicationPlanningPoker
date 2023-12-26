@@ -1,0 +1,30 @@
+{
+    "tests": [
+        {
+            "name": "Test avec methode de vote sp\u00e9cifi\u00e9e",
+            "input": {
+                "localStorage": {
+                    "methodeVote": "A"
+                }
+            },
+            "expectedOutput": {
+                "consoleLog": "methodeVote A",
+                "elementInteractions": {
+                    "nomForm": "difficultes"
+                }
+            }
+        },
+        {
+            "name": "Test sans methode de vote sp\u00e9cifi\u00e9e",
+            "input": {
+                "localStorage": {}
+            },
+            "expectedOutput": {
+                "consoleLog": "methodeVote null",
+                "elementInteractions": {
+                    "nomForm": "difficultes"
+                }
+            }
+        }
+    ]
+}

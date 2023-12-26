@@ -1,0 +1,26 @@
+{
+    "tests": [
+        {
+            "name": "Test avec fichier JSON existant",
+            "input": {
+                "jsonFileExists": true
+            },
+            "expectedOutput": {
+                "functionExecuted": "chargerFichierJson",
+                "pageDisplayed": "Page de difficult\u00e9s",
+                "alertShown": false
+            }
+        },
+        {
+            "name": "Test sans fichier JSON",
+            "input": {
+                "jsonFileExists": false
+            },
+            "expectedOutput": {
+                "functionExecuted": "chargerFichierJson",
+                "pageDisplayed": null,
+                "alertShown": true
+            }
+        }
+    ]
+}
