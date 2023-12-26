@@ -1,16 +1,39 @@
-import {initPage, fondRouge, reinitialiser_formulaire, tourParticipant, traitementParticipant, } from '/difficultes.js';
-import {displayParticipant, displayTache, stocker, parole_moyenne, initPage} from '/difficultes.js';
+const { recupererLesDonnees, afficherTachesEtDifficultes, displayTacheEtDifficulte, initPage } = require('./tache');
 
-describe('Tests pour difficultes.js', () => {
-    test('initPage avec méthode de vote spécifiée', () => {
+// Mocks pour fetch et document.getElementById
+global.fetch = jest.fn();
+global.document.getElementById = jest.fn();
 
+describe('Tests pour tache.js', () => {
+    beforeEach(() => {
+        fetch.mockClear();
+        document.getElementById.mockClear();
     });
 
-    test('initPage gère les exceptions', () => {
+    test('recupererLesDonnees avec données JSON valides', async () => {
+        // Simuler une réponse réussie de fetch
+        fetch.mockResolvedValueOnce({
+            json: () => Promise.resolve({ tache1: 'difficile', tache2: 'facile' })
+        });
 
-        expect(() => {
-            initPage();
-        }).toThrow();
+        // Appel de la fonction et attente de son achèvement
+        await recupererLesDonnees();
+
+        // Vérifications
+        expect(fetch).toHaveBeenCalledTimes(1);
+        expect(fetch).toHaveBeenCalledWith('votes.json');
     });
+
+    test('recupererLesDonnees gère les exceptions', async () => {
+        // Simuler une erreur lors de l'appel à fetch
+        fetch.mockRejectedValueOnce(new Error('Erreur de réseau'));
+
+        // Appel de la fonction et attente de son achèvement
+        await expect(recupererLesDonnees()).rejects.toThrow('Erreur de réseau');
+
+        // Vérifications supplémentaires
+        expect(fetch).toHaveBeenCalledTimes(1);
+    });
+
+
 });
-
