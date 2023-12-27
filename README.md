@@ -63,8 +63,7 @@ Si vous utilisez un service d'hébergement Web, vous pouvez généralement suivr
 
 ## Documentation
 
-[Documentation](https://github.com/lansanacisse/ApplicationPlanningPoker/blob/main/Documentation%20Planning%20Poker.pdf)
-
+[Documentation](https://github.com/lansanacisse/ApplicationPlanningPoker/tree/main/Documentation)
 
 ![Logo](https://www.merci-app.com/app/uploads/2023/07/64ba8d6697941b33d27779f3_Site20Scrum20Poker20en20ligne201.jpg)
 
