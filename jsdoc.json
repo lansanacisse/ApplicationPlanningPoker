@@ -1,0 +1,10 @@
+{
+  "source": {
+    "include": ["https://github.com/lansanacisse/ApplicationPlanningPoker/blob/main/difficultes.js", "https://github.com/lansanacisse/ApplicationPlanningPoker/blob/main/continuer_partie.js", "https://github.com/lansanacisse/ApplicationPlanningPoker/blob/main/tache.js", "https://github.com/lansanacisse/ApplicationPlanningPoker/blob/main/accueil.js"],
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "opts": {
+    "destination": "out"
+  }
+}
