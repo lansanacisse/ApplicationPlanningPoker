@@ -1,7 +1,7 @@
 {
     "tests": [
         {
-            "name": "Test avec m\u00e9thode de vote A et 5 participants",
+            "name": "Test avec methode de vote A et 5 participants",
             "input": {
                 "methodeVote": "A",
                 "numParticipants": 5
@@ -15,7 +15,7 @@
             }
         },
         {
-            "name": "Test avec m\u00e9thode de vote B et 10 participants",
+            "name": "Test avec methode de vote B et 10 participants",
             "input": {
                 "methodeVote": "B",
                 "numParticipants": 10
