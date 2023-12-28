@@ -50,7 +50,7 @@ npm install ts-jest
 
 ## Deployement 
 
-Pour utiliser ce projet, vous devez disposer d'un serveur PHP. Vous pouvez installer un serveur PHP sur votre ordinateur ou utiliser un service d'hébergement Web.
+Pour utiliser ce projet, vous devez disposer d'un serveur PHP. Vous pouvez installer un serveur PHP sur votre ordinateur ou utiliser un service d'hébergement Web (EasyPHP par exemple).
 
 Si vous installez un serveur PHP sur votre ordinateur, vous pouvez suivre les instructions suivantes :
 
