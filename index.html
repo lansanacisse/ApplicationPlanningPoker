@@ -25,11 +25,13 @@
         </div>
 
         <div class="col-12 text-center">
-            <h3>Commencer une nouvelle partie</h3>
-            <a href="accueil.html">Commencer une nouvelle partie</a>
-
-            <h3>Rejoindre une partie</h3>
-            <a href="continuer_partie.html">Rejoindre une partie existante</a>
+            <form name="partie" id = "partie" action="" method="post">
+                    <label for="methode"><b>Faites votre choix</b></label>
+                    <br> <br>
+                    <input type="submit" name="partie" id="nouvellePartie" value="nouvelle" required> Nouvelle partie
+                    <br> <br>
+                    <input type="submit" name="partie" id="reprendrePartie" value="reprendre" required> Reprendre partie                
+            </form>
             
         </div>
 
@@ -38,6 +40,7 @@
     <br><br>
     <div id="footer" class="text-center">
         <p>© 2023 - Planning Poker</p>
-    </div>    
+    </div>   
+    <script src="index.js"></script>
 </body>
 </html>

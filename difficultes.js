@@ -10,8 +10,14 @@ let data;
 // Recuperer la methode de vote
 let methodeVote = localStorage.getItem('methodeVote')
 
+// Recuperer le type de partie
+let choixPartie = localStorage.getItem('choixPartie');
+
 // Afficher la methode de vote dans la console
 console.log('methodeVote', methodeVote);
+
+// Afficher le type de partie dans la console
+console.log('typePartie', choixPartie);
 
 // Recuperer le formulaire
 const nomForm = document.getElementById('difficultes');
@@ -64,6 +70,17 @@ function tourParticipant() {
             traitementParticipant(dataObject);
             data = dataObject;
             console.log(dataObject);
+
+            // Si choixPartie est 'reprendre', charger également le fichier votesCafe.json
+            if (choixPartie === 'reprendre') {
+                fetch('votesCafe.json')
+                    .then(response => response.json())
+                    .then(dataObjectReprendre => {
+                        initialiser_variables(dataObjectReprendre);
+                        console.log(dataObject);
+                    })
+                    .catch(error => console.error('Désolé, une erreur est survenue', error));
+            }
         })
         .catch(error => console.error('Désolé, une erreur est survenue', error));
 }
@@ -76,6 +93,16 @@ let participantsVote = 0;
 
 // Variable pour stocker l'index de la tâche en cours
 let currentIndexTache = 0;
+
+function reinitialiser_variables(dataObjectReprendre) {
+    currentIndexTache = dataObjectReprendre[dataObjectReprendre.length - 1] + 1;
+    for (let i = 0; i < dataObjectReprendre.length - 1; i++) {
+        votes.push(dataObjectReprendre[i]);
+        votes.push(dataObjectReprendre[i]);
+        votes.push(dataObjectReprendre[i]);
+    }
+    traitementParticipant(data);
+}
 
 function traitementParticipant(data) {
 
